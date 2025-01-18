@@ -4,6 +4,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+@media (max-width: 768px) { /* add this media query */
+  .navbar .nav-menu {
+    flex-direction: column; /* change this for mobile navigation */
+    justify-content: space-around;
+  }
+  .navbar .nav-menu li {
+    margin: 10px 0;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
