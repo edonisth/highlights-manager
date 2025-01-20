@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Sidebar toggle functionality
     const sidebar = document.querySelector('.sidebar');
     const toggleButton = document.getElementById('sidebarToggle');
     const icon = toggleButton.querySelector('i');
@@ -37,4 +38,42 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.remove('collapsed');
         }
     });
+
+    // Add active class to selected book
+    document.querySelectorAll('.book-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            document.querySelectorAll('.book-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            this.closest('.book-item').classList.add('active');
+        });
+    });
+
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Check for saved theme in localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+        updateThemeIcon();
+    }
+
+    // Toggle Theme
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        updateThemeIcon();
+        const currentTheme = body.classList.contains('light-mode') ? 'light-mode' : '';
+        localStorage.setItem('theme', currentTheme);
+    });
+
+    // Update Theme Icon
+    function updateThemeIcon() {
+        const isLightMode = body.classList.contains('light-mode');
+        themeToggle.innerHTML = isLightMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+
+    // Initialize theme icon on page load
+    updateThemeIcon();
 });

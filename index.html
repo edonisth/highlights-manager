@@ -3,53 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Notes</title>
+    <title>Edonis Reads</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <button class="toggle-button" id="sidebarToggle">
+        <!-- Sidebar Toggle Button -->
+        <button class="sidebar-toggle" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
+    
+        <!-- Brand Logo -->
+        <div class="navbar-brand">
+            <span class="logo-text">Edonis Reads</span>
         </div>
+    
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    
+        <!-- Nav Menu -->
         <ul class="nav-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#methodology" class="nav-link">Methodology</a></li>
+            <li>
+                <a href="https://github.com/yourusername" class="nav-link github-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            </li>
         </ul>
-<!-- Change the search button to a regular button -->
-<form class="search-form">
-    <input type="search" class="search-input" placeholder="Search books...">
-    <button type="submit" class="search-button"> <!-- Changed class -->
-        <i class="fas fa-search"></i>
-    </button>
-</form>
+    
+        <!-- Search Form -->
+        <form class="search-form">
+            <input type="search" class="search-input" placeholder="Search 122 highlights...">
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    
+        <!-- Highlights Counter -->
+        <div class="highlights-counter">
+            <i class="fas fa-bookmark"></i>
+            <span>122</span>
+        </div>
     </nav>
 
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <h2>Book Library</h2>
+            <h2 class="sidebar-title">Book Library</h2>
             <ul class="book-list">
-                <li><a href="#cypherpunks" data-book-id="cypherpunks">Cypherpunks</a></li>
-                <li><a href="#food-of-the-gods" data-book-id="food-of-the-gods">Food of the Gods</a></li>
+                <li class="book-item">
+                    <a href="#cypherpunks" data-book-id="cypherpunks" class="book-link">
+                        <div class="book-cover">
+                            <img src="covers/cypherpunks-cover.jpg" alt="Cypherpunks Cover">
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">Cypherpunks</h3>
+                            <p class="book-author">Julian Assange</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="book-item">
+                    <a href="#food-of-the-gods" data-book-id="food-of-the-gods" class="book-link">
+                        <div class="book-cover">
+                            <img src="covers/food-of-gods-cover.jpg" alt="Food of the Gods Cover">
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">Food of The Gods</h3>
+                            <p class="book-author">Terence McKenna</p>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </aside>
 
         <!-- Main Content -->
-        <main class="content">
-            <section class="content-section" id="book-content">
-                <!-- Dynamic content will be loaded here -->
+<!-- Main Content -->
+<main class="content">
+    <section class="content-section" id="book-content">
+        <!-- Food of the Gods Content -->
+        <article class="book-summary">
+            <header class="book-header">
+                <h1 class="book-title-main">Terence McKenna – Food of the Gods</h1>
+            </header>
+
+            <div class="book-intro">
+                <p>Food of the Gods by Terence McKenna is a groundbreaking exploration of humanity's relationship with psychoactive plants and their role in shaping our evolution, culture, and consciousness. McKenna argues that hallucinogens like psilocybin mushrooms were instrumental in the development of human self-awareness, language, and spirituality. He critiques modern society's suppression of altered states of consciousness and calls for an "Archaic Revival"—a return to the shamanic practices that once connected us to nature and the transcendent.</p>
+            </div>
+
+            <section class="key-themes">
+                <h2 class="section-title">Key Themes</h2>
+                <ul class="theme-list">
+                    <li>
+                        <h3>Psychoactive Plants and Human Evolution</h3>
+                        <p>McKenna posits that psychoactive plants catalyzed the emergence of human consciousness, creativity, and culture. These plants allowed early humans to explore altered states of consciousness, leading to the development of language, art, and spirituality.</p>
+                    </li>
+                    <li>
+                        <h3>The Fall into Dominator Culture</h3>
+                        <p>The book traces humanity's shift from a partnership-based society to a dominator culture that seeks to control and exploit the natural world. This shift is linked to the suppression of shamanic practices.</p>
+                    </li>
+                    <!-- Add other themes following same structure -->
+                </ul>
             </section>
-        </main>
-    </div>
+
+            <section class="significant-quotes">
+                <h2 class="section-title">Significant Quotes</h2>
+                <div class="quote-grid">
+                    <blockquote class="quote-card">
+                        <p>"The mutation-inducing influence of diet on early humans and the effect of exotic metabolites on the evolution of their neurochemistry and culture is still unstudied territory."</p>
+                    </blockquote>
+                    <blockquote class="quote-card">
+                        <p>"We in our anguish traded partnership for dominance, traded harmony with nature for rape of nature, traded poetry for the sophistry of science."</p>
+                    </blockquote>
+                    <!-- Add other quotes -->
+                </div>
+            </section>
+        </article>
+    </section>
+</main>
 
     <footer class="footer">
-        <p>&copy; 2023 Book Notes. All rights reserved.</p>
+        <p>&copy; 2025 Edonis Reads. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
