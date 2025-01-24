@@ -6,13 +6,13 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
   color: #E0E0FF;
   background-color: #0a0a12;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Light Mode Styles */
@@ -33,7 +33,7 @@ body.light-mode .navbar {
 }
 
 body.light-mode .logo-text {
-  color: #6C72FF;
+  color: #445a95;
   text-shadow: 0 0 8px rgba(108, 114, 255, 0.2);
 }
 
@@ -47,12 +47,12 @@ body.light-mode .nav-link:hover {
 
 body.light-mode .search-input {
   background: #fff;
-  border: 1px solid #6C72FF;
+  border: 1px solid #445a95;
   color: #333;
 }
 
 body.light-mode .search-button {
-  background: #6C72FF;
+  background: #445a95;
   color: white;
 }
 
@@ -63,12 +63,12 @@ body.light-mode .sidebar {
 
 body.light-mode .sidebar-title {
   color: #333;
-  border-bottom: 2px solid #6C72FF;
+  border-bottom: 2px solid #445a95;
 }
 
 body.light-mode .book-item {
   background: #fff;
-  border-image: linear-gradient(45deg, #6C72FF, #1E90FF) 1; /* Updated to navy blue */
+  border-image: linear-gradient(45deg, #445a95, #1E90FF) 1; /* Updated to navy blue */
 }
 
 body.light-mode .book-title {
@@ -93,7 +93,7 @@ body.light-mode blockquote {
 }
 
 body.light-mode blockquote::before {
-  background: linear-gradient(#6C72FF, #61adff);
+  background: linear-gradient(#445a95, #61adff);
 }
 
 body.light-mode .footer {
@@ -127,7 +127,7 @@ body::before {
   gap: 1.5rem;
   background: linear-gradient(135deg, rgba(108, 114, 255, 0.1) 0%, rgba(18, 18, 40, 0.95) 100%);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid #6C72FF33;
+  border-bottom: 1px solid #445a95;
 }
 
 .navbar-brand {
@@ -138,7 +138,7 @@ body::before {
   font-family: 'Space Mono', monospace;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #6C72FF;
+  color: #445a95;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 0 0 8px rgba(108, 114, 255, 0.4);
@@ -146,7 +146,7 @@ body::before {
 
 /* Sidebar Toggle Button */
 .sidebar-toggle {
-  background: #6C72FF;
+  background: #445a95;
   border: none;
   color: white;
   font-size: 1.25rem;
@@ -160,6 +160,25 @@ body::before {
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
+/* Hide all book content sections by default */
+.book-content {
+  display: none;
+}
+
+/* Show active book content */
+.book-content.active {
+  display: block;
+}
+
+#food-of-the-gods {
+  display: block !important;
+  border: 2px solid red; /* Highlight the element for debugging */
+}
+
+.content-section.book-content.active {
+  display: block !important; /* Use !important to override any conflicting rules */
+}
+
 .sidebar-toggle:hover {
   background: #1E90FF;
   transform: scale(1.1);
@@ -167,7 +186,7 @@ body::before {
 
 /* Theme Toggle Button */
 .theme-toggle {
-  background: #6C72FF;
+  background: #445a95;
   border: none;
   color: white;
   font-size: 1.25rem;
@@ -241,7 +260,7 @@ body::before {
 
 .search-input {
   background: #1a1a2e;
-  border: 1px solid #6C72FF;
+  border: 1px solid #445a95;
   color: #E0E0FF;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -250,11 +269,11 @@ body::before {
 
 .search-input:focus {
   outline: none;
-  box-shadow: 0 0 15px #6C72FF80;
+  box-shadow: 0 0 15px #445a95;
 }
 
 .search-button {
-  background: #6C72FF;
+  background: #445a95;
   border: none;
   color: white;
   padding: 0.5rem 1rem;
@@ -271,7 +290,7 @@ body::before {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #6C72FF;
+  background: #445a95;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   box-shadow: 0 4px 15px rgba(108, 114, 255, 0.25);
@@ -280,20 +299,19 @@ body::before {
 /* Container & Sidebar */
 .container {
   display: flex;
-  flex-grow: 1;
-  position: relative;
-  overflow: hidden;
+  flex: 1;
+  min-height: 0; /* Allows children to respect height constraints */
 }
 
 .sidebar {
   width: 300px;
   background: #111122;
   padding: 2rem;
-  transition: transform 0.3s ease;
-  border-right: 1px solid #6C72FF33;
-  height: calc(100vh - 60px);
-  position: relative;
-  z-index: 999;
+  overflow-y: auto; /* Add scroll if content overflows */
+  height: calc(100vh - 60px - 3rem); /* Subtract footer height (3rem) and navbar height (60px) */
+  position: sticky;
+  top: 60px; /* Height of navbar */
+  align-self: flex-start; /* Prevent stretching */
 }
 
 .sidebar.collapsed {
@@ -305,7 +323,7 @@ body::before {
   color: #E0E0FF;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #6C72FF;
+  border-bottom: 2px solid #445a95;
 }
 
 /* Book List */
@@ -319,7 +337,7 @@ body::before {
   margin-bottom: 1rem;
   background: #1a1a2e;
   border: 1px solid transparent;
-  border-image: linear-gradient(45deg, #6C72FF, #1E90FF) 1; /* Updated to navy blue */
+  border-image: linear-gradient(45deg, #445a95, #1E90FF) 1; /* Updated to navy blue */
   transition: transform 0.2s ease;
 }
 
@@ -364,17 +382,17 @@ body::before {
 /* Book Content Styles */
 .book-title-main {
   font-family: 'Space Mono', monospace;
-  color: #6C72FF;
+  color: #445a95;
   margin-bottom: 2rem;
   font-size: 2.5rem;
 }
 
 .section-title {
   font-family: 'Space Mono', monospace;
-  color: #6C72FF;
+  color: #445a95;
   margin: 2rem 0;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #6C72FF;
+  border-bottom: 2px solid #445a95;
 }
 
 .theme-list {
@@ -387,7 +405,7 @@ body::before {
   padding: 1.5rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
-  border: 1px solid #6C72FF33;
+  border: 1px solid #445a95;
 }
 
 .theme-list h3 {
@@ -406,14 +424,14 @@ body::before {
   background: #1a1a2e;
   padding: 1.5rem;
   border-radius: 8px;
-  border-left: 4px solid #6C72FF;
+  border-left: 4px solid #445a95;
 }
 
 /* Light Mode Adjustments */
 body.light-mode .theme-list li,
 body.light-mode .quote-card {
   background: #fff;
-  border-color: #6C72FF;
+  border-color: #445a95;
 }
 
 body.light-mode .theme-list h3 {
@@ -422,11 +440,11 @@ body.light-mode .theme-list h3 {
 
 /* Main Content */
 .content {
-  flex-grow: 1;
+  flex: 1;
   padding: 2rem;
   background: #0a0a12;
-  transition: margin-left 0.3s ease;
-  min-width: calc(100% - 300px);
+  min-height: calc(100vh - 60px - 3rem); /* Same calculation as sidebar */
+  overflow-y: auto;
 }
 
 .content-section {
@@ -434,7 +452,7 @@ body.light-mode .theme-list h3 {
   background: #111122;
   padding: 2rem;
   border-radius: 8px;
-  border: 1px solid #6C72FF33;
+  border: 1px solid #445a95;
 }
 
 blockquote {
@@ -451,23 +469,28 @@ blockquote::before {
   top: 0;
   height: 100%;
   width: 3px;
-  background: linear-gradient(#6C72FF, #61adff);
+  background: linear-gradient(#445a95, #61adff);
 }
 
 /* Footer */
 .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background: #111122;
   color: #9090CC;
   text-align: center;
-  padding: 1.5rem;
-  margin-top: auto;
-  border-top: 1px solid #6C72FF33;
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .nav-menu {
-      display: none;
+  .sidebar {
+      height: auto; /* Full height overlay */
+      top: 60px;
+      bottom: 0;
+      position: fixed;
   }
 
   .sidebar {
@@ -487,6 +510,8 @@ blockquote::before {
   .content {
       padding: 1.5rem;
       min-width: 100%;
+      min-height: calc(100vh - 60px - 3rem);
+      padding-bottom: 4rem; /* Space for footer */
   }
 
   .container {

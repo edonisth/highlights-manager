@@ -1,4 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Handle book link clicks
+    document.querySelectorAll('.book-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior
+            const bookId = this.dataset.bookId; // Get the book ID from the clicked link
+            console.log('Clicked book ID:', bookId); // Debug: Log the book ID
+
+            // Remove active class from all books and content
+            document.querySelectorAll('.book-item, .book-content').forEach(element => {
+                element.classList.remove('active');
+            });
+
+            // Add active class to clicked book and corresponding content
+            const bookItem = this.closest('.book-item');
+            const bookContent = document.getElementById(bookId);
+
+            if (bookItem && bookContent) {
+                bookItem.classList.add('active');
+                bookContent.classList.add('active');
+                console.log('Active book:', bookId); // Debug: Log the active book
+            } else {
+                console.error('Book item or content not found for ID:', bookId); // Debug: Log errors
+            }
+        });
+    });
+
     // Sidebar toggle functionality
     const sidebar = document.querySelector('.sidebar');
     const toggleButton = document.getElementById('sidebarToggle');
@@ -37,16 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             sidebar.classList.remove('collapsed');
         }
-    });
-
-    // Add active class to selected book
-    document.querySelectorAll('.book-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            document.querySelectorAll('.book-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            this.closest('.book-item').classList.add('active');
-        });
     });
 
     // Theme Toggle Functionality
